@@ -1,0 +1,5 @@
+.env
+.idea/
+/var/
+/sf6/vendor
+/sf6/.env

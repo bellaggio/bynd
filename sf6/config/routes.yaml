@@ -1,0 +1,29 @@
+controllers:
+    resource:
+        path: ../src/Infra/Controller/
+        namespace: App\Controller
+    type: attribute
+
+get_book_description:
+    path:       /book/description/{id}
+    controller: App\Infra\Controller\GetBookDescriptionController
+    methods: GET
+
+get_book:
+    path:       /book
+    controller: App\Infra\Controller\GetBookController
+    methods: GET
+
+update_book:
+    path:       /book/{id}
+    controller: App\Infra\Controller\PutBookController
+    methods: PUT
+insert_book:
+    path:       /book
+    controller: App\Infra\Controller\PutBookController
+    methods: POST
+
+search_book:
+    path:       /book/search
+    controller: App\Infra\Controller\SearchBookController
+    methods: POST
