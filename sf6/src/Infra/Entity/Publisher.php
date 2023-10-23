@@ -11,11 +11,16 @@ class Publisher
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id = null;
+    private int $id;
 
     #[ORM\Column(type: Types::TEXT, nullable: false)]
     private string $name;
-    public function getId(): ?int
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE,nullable: false)]
+    private \DateTime $created_at;
+    #[ORM\Column(type: Types::DATETIME_MUTABLE,nullable: false)]
+    private \DateTime $updated_at;
+    public function getId(): int
     {
         return $this->id;
     }
@@ -35,6 +40,42 @@ class Publisher
     public function setName(string $name): Publisher
     {
         $this->name = $name;
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCreatedAt(): \DateTime
+    {
+        return $this->created_at;
+    }
+
+    /**
+     * @param \DateTime $created_at
+     * @return Publisher
+     */
+    public function setCreatedAt(\DateTime $created_at): Publisher
+    {
+        $this->created_at = $created_at;
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getUpdatedAt(): \DateTime
+    {
+        return $this->updated_at;
+    }
+
+    /**
+     * @param \DateTime $updated_at
+     * @return Publisher
+     */
+    public function setUpdatedAt(\DateTime $updated_at): Publisher
+    {
+        $this->updated_at = $updated_at;
         return $this;
     }
 }
