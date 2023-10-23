@@ -3,6 +3,8 @@
 namespace App\Infra\Entity;
 
 use App\Infra\Repository\AuthorRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: AuthorRepository::class)]
@@ -16,6 +18,8 @@ class Author
     #[ORM\Column(type: Types::TEXT, nullable: false)]
     private string $name;
 
+    #[ORM\OneToMany(mappedBy: "publisher", targetEntity: Book::class)]
+    private ArrayCollection $books;
     #[ORM\Column(type: Types::DATETIME_MUTABLE,nullable: false)]
     private \DateTime $created_at;
     #[ORM\Column(type: Types::DATETIME_MUTABLE,nullable: false)]
@@ -76,6 +80,24 @@ class Author
     public function setUpdatedAt(\DateTime $updated_at): Author
     {
         $this->updated_at = $updated_at;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBooks():ArrayCollection
+    {
+        return $this->books;
+    }
+
+    /**
+     * @param mixed $books
+     * @return Publisher
+     */
+    public function setBooks(ArrayCollection $books):Publisher
+    {
+        $this->books = $books;
         return $this;
     }
 }
