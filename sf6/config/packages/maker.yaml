@@ -1,2 +1,2 @@
 maker:
-  root_namespace: 'App\Infra\'
+  root_namespace: 'App\Infra'

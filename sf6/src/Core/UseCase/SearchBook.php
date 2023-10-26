@@ -1,11 +1,22 @@
 <?php
 
+namespace App\Core\UseCase;
+
+use App\Core\Adapters\BookRepositoryInterface;
+use App\Infra\Entity\Book;
+
 class SearchBook
 {
-    public function __construct(protected \Adapters\BookRepositoryInterface $bookRepository)
-    {}
+    public function __construct(protected BookRepositoryInterface $bookRepository)
+    {
+    }
 
-    public function handler(array $data){
-
+    /**
+     * @param string $name
+     * @return Book|null
+     */
+    public function handler(string $name): ?Book
+    {
+        return $this->bookRepository->search($name);
     }
 }

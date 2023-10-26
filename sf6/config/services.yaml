@@ -22,3 +22,8 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    App\Core\Adapters\BookRepositoryInterface: '@App\Infra\Repository\BookRepository'
+    App\Core\Adapters\AuthorRepositoryInterface: '@App\Infra\Repository\AuthorRepository'
+    App\Core\Adapters\PublisherRepositoryInterface: '@App\Infra\Repository\PublisherRepository'
+    Doctrine\Persistence\ObjectManager: '@doctrine.orm.entity_manager'

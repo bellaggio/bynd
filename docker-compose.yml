@@ -8,6 +8,8 @@ services:
       - ./sf6:/var/www/html
     ports:
       - 80:80
+    links:
+      - db
 
   db:
     container_name: "symfony-assessment-mariadb"
