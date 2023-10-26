@@ -3,7 +3,9 @@
 namespace App\Infra\Entity;
 
 use App\Infra\Repository\PublisherRepository;
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -17,13 +19,14 @@ class Publisher
 
     #[ORM\Column(type: Types::TEXT, nullable: false)]
     private string $name;
-    #[ORM\OneToMany(mappedBy: "publisher", targetEntity: Book::class)]
-    private ArrayCollection $books;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE,nullable: false)]
-    private \DateTime $created_at;
-    #[ORM\Column(type: Types::DATETIME_MUTABLE,nullable: false)]
-    private \DateTime $updated_at;
+    #[ORM\OneToMany(mappedBy: "publisher", targetEntity: Book::class, cascade: ["persist", "remove"])]
+    private $books;
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: false)]
+    private DateTime $created_at;
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: false)]
+    private DateTime $updated_at;
+
     public function getId(): int
     {
         return $this->id;
@@ -48,56 +51,38 @@ class Publisher
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt(): DateTime
     {
         return $this->created_at;
     }
 
     /**
-     * @param \DateTime $created_at
+     * @param DateTime $created_at
      * @return Publisher
      */
-    public function setCreatedAt(\DateTime $created_at): Publisher
+    public function setCreatedAt(DateTime $created_at): Publisher
     {
         $this->created_at = $created_at;
         return $this;
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt(): DateTime
     {
         return $this->updated_at;
     }
 
     /**
-     * @param \DateTime $updated_at
+     * @param DateTime $updated_at
      * @return Publisher
      */
-    public function setUpdatedAt(\DateTime $updated_at): Publisher
+    public function setUpdatedAt(DateTime $updated_at): Publisher
     {
         $this->updated_at = $updated_at;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getBooks():ArrayCollection
-    {
-        return $this->books;
-    }
-
-    /**
-     * @param mixed $books
-     * @return Publisher
-     */
-    public function setBooks(ArrayCollection $books):Publisher
-    {
-        $this->books = $books;
         return $this;
     }
 }
