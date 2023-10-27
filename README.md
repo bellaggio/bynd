@@ -16,7 +16,7 @@ make up
 After booting the container, you can use composer and the symfony cli insight the php-apache container:
 ```
 docker exec -it symfony-assessment-apache-php bash
-composer create-project symfony/skeleton ./
+composer install
 ```
 
 ## Installed Packages
