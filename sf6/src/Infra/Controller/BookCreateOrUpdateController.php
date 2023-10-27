@@ -19,13 +19,11 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 #[Route('/book', name: 'app_book_create', methods: ['POST'])]
 class BookCreateOrUpdateController extends AbstractController
 {
-
     public function __construct(
         protected PublisherFindByName $publisherFindByName,
-        protected AuthorFindByName    $authorFindByName,
-        protected CreateUpdateBook    $createUpdateBook
-    )
-    {
+        protected AuthorFindByName $authorFindByName,
+        protected CreateUpdateBook $createUpdateBook
+    ) {
     }
 
     /**
@@ -34,8 +32,11 @@ class BookCreateOrUpdateController extends AbstractController
      * @param ValidatorInterface $validator
      * @return JsonResponse
      */
-    public function __invoke(Request $request, SerializerInterface $serializer, ValidatorInterface $validator): JsonResponse
-    {
+    public function __invoke(
+        Request $request,
+        SerializerInterface $serializer,
+        ValidatorInterface $validator
+    ): JsonResponse {
 
         $dto = $serializer->deserialize($request->getContent(), BookRequest::class, 'json');
 
@@ -65,7 +66,6 @@ class BookCreateOrUpdateController extends AbstractController
         }
 
         try {
-
             $this->createUpdateBook->handler($data, $hasAuthor, $hasPublisher);
 
             return $this->json([

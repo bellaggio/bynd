@@ -7,6 +7,7 @@ use App\Infra\Repository\BookRepository;
 use Zenstruck\Foundry\ModelFactory;
 use Zenstruck\Foundry\Proxy;
 use Zenstruck\Foundry\RepositoryProxy;
+
 use function Zenstruck\Foundry\lazy;
 
 /**

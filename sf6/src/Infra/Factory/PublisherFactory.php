@@ -29,7 +29,6 @@ use Zenstruck\Foundry\RepositoryProxy;
  */
 final class PublisherFactory extends ModelFactory
 {
-
     public function __construct()
     {
         parent::__construct();

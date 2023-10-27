@@ -8,19 +8,18 @@ use Symfony\Component\Validator\Constraints\Type;
 
 class BookRequest
 {
-
     #[NotBlank([])]
     #[Type('string')]
-    public $name;
+    public string $name;
     #[Type('integer')]
     #[NotBlank([])]
-    public $ISBN;
+    public mixed $ISBN;
 
     #[Type('string')]
     #[NotBlank([])]
-    public $author;
+    public string $author;
 
     #[Type('string')]
     #[NotBlank([])]
-    public $publisher;
+    public string $publisher;
 }
