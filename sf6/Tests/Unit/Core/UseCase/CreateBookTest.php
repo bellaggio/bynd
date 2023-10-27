@@ -28,6 +28,9 @@ class CreateBookTest extends TestCase
         $this->useCase = new CreateUpdateBook($this->repositoryMock);
     }
 
+    /**
+     * @return void
+     */
     public function testCreateBookShouldReturnTheBookEntity(): void
     {
         $book = new Book();
@@ -47,6 +50,9 @@ class CreateBookTest extends TestCase
         $this->assertEquals($response->getName(), $book->getName());
     }
 
+    /**
+     * @return void
+     */
     public function testUpdateBookShouldReturnTheBookEntityUpdated(): void
     {
         $book = new Book();

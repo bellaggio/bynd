@@ -28,7 +28,11 @@ class PublisherFindByNameTest extends TestCase
         $this->useCase = new PublisherFindByName($this->repositoryMock);
     }
 
-    public function testShouldReturnPublisherEntityByNameWhenFound(){
+    /**
+     * @return void
+     */
+    public function testShouldReturnPublisherEntityByNameWhenFound():void
+    {
         $publisher = new Publisher();
         $publisher->setName("Petter");
         $this->repositoryMock->expects(self::once())->method('findByName')->willReturn($publisher);
@@ -38,7 +42,11 @@ class PublisherFindByNameTest extends TestCase
         $this->assertEquals('Petter', $response->getName());
     }
 
-    public function testShouldReturnNullByNameWhenNotFound(){
+    /**
+     * @return void
+     */
+    public function testShouldReturnNullByNameWhenNotFound():void
+    {
 
         $this->repositoryMock->expects(self::once())->method('findByName')->willReturn(null);
 

@@ -28,7 +28,13 @@ class BookCreateOrUpdateController extends AbstractController
     {
     }
 
-    public function __invoke(Request $request, SerializerInterface  $serializer, ValidatorInterface $validator): JsonResponse
+    /**
+     * @param Request $request
+     * @param SerializerInterface $serializer
+     * @param ValidatorInterface $validator
+     * @return JsonResponse
+     */
+    public function __invoke(Request $request, SerializerInterface $serializer, ValidatorInterface $validator): JsonResponse
     {
 
         $dto = $serializer->deserialize($request->getContent(), BookRequest::class, 'json');
@@ -40,7 +46,7 @@ class BookCreateOrUpdateController extends AbstractController
                 'errors' => $errors,
             ], 404);
         }
-        $data = json_decode($request->getContent(),true);
+        $data = json_decode($request->getContent(), true);
 
         $hasAuthor = $this->authorFindByName->handler($data['author']);
 

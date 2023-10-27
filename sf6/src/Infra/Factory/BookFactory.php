@@ -30,20 +30,21 @@ use function Zenstruck\Foundry\lazy;
  */
 final class BookFactory extends ModelFactory
 {
-    /**
-     * @see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#factories-as-services
-     *
-     * @todo inject services if required
-     */
     public function __construct()
     {
         parent::__construct();
     }
 
     /**
-     * @see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#model-factories
-     *
-     * @todo add your default values here
+     * @return string
+     */
+    protected static function getClass(): string
+    {
+        return Book::class;
+    }
+
+    /**
+     * @return array|mixed[]
      */
     protected function getDefaults(): array
     {
@@ -53,23 +54,16 @@ final class BookFactory extends ModelFactory
             'publisher' => lazy(fn() => PublisherFactory::randomOrCreate()),
             'author' => lazy(fn() => AuthorFactory::randomOrCreate()),
             'description' => self::faker()->text(255),
-            'ISBN' => self::faker()->numberBetween(1,1000),
+            'ISBN' => self::faker()->numberBetween(1, 1000),
             'updated_at' => self::faker()->dateTime(),
         ];
     }
 
     /**
-     * @see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#initialization
+     * @return $this
      */
     protected function initialize(): self
     {
-        return $this
-            // ->afterInstantiate(function(Book $book): void {})
-        ;
-    }
-
-    protected static function getClass(): string
-    {
-        return Book::class;
+        return $this;
     }
 }

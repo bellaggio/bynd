@@ -4,8 +4,6 @@ namespace App\Infra\Entity;
 
 use App\Infra\Repository\PublisherRepository;
 use DateTime;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -27,6 +25,9 @@ class Publisher
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: false)]
     private DateTime $updated_at;
 
+    /**
+     * @return int
+     */
     public function getId(): int
     {
         return $this->id;

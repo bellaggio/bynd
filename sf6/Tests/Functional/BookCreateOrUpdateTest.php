@@ -28,7 +28,7 @@ class BookCreateOrUpdateTest extends ApiTestCase
      * @return void
      * @throws \Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface
      */
-    public function testShouldReturnStatusCode200WhenBookUpdateCorrectly()
+    public function testShouldReturnStatusCode200WhenBookUpdateCorrectly():void
     {
         $book = BookFactory::createMany(1);
 
@@ -51,7 +51,7 @@ class BookCreateOrUpdateTest extends ApiTestCase
      * @return void
      * @throws \Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface
      */
-    public function testShouldReturnStatusCode200WhenBookCreateCorrectly()
+    public function testShouldReturnStatusCode200WhenBookCreateCorrectly():void
     {
 
         $response = static::createClient()->request('POST', '/api/v1/book',
@@ -71,7 +71,7 @@ class BookCreateOrUpdateTest extends ApiTestCase
     /**
      * @dataProvider payloadProvider
      */
-    public function testShouldReturnStatusCode404WhenAuthorNotFound()
+    public function testShouldReturnStatusCode404WhenAuthorNotFound():void
     {
 
         static::createClient()->request('POST', '/api/v1/book',
@@ -91,7 +91,7 @@ class BookCreateOrUpdateTest extends ApiTestCase
     /**
      * @dataProvider payloadProvider
      */
-    public function testShouldReturnStatusCode404WhenPublisherNotFound()
+    public function testShouldReturnStatusCode404WhenPublisherNotFound():void
     {
 
         static::createClient()->request('POST', '/api/v1/book',
@@ -111,7 +111,7 @@ class BookCreateOrUpdateTest extends ApiTestCase
     /**
      * @dataProvider payloadProvider
      */
-    public function testShouldReturnJsonResponseWith404WhenPayloadValidationFailed($payload)
+    public function testShouldReturnJsonResponseWith404WhenPayloadValidationFailed($payload):void
     {
 
         $merged = array_merge(
@@ -126,7 +126,7 @@ class BookCreateOrUpdateTest extends ApiTestCase
     /**
      * @return \array[][]
      */
-    public function payloadProvider()
+    public function payloadProvider():array
     {
         return [
             [

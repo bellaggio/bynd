@@ -25,18 +25,20 @@ class AuthorFindByNameTest extends TestCase
         $this->useCase = new AuthorFindByName($this->repositoryMock);
     }
 
-    public function testShouldReturnAuthorEntityByNameWhenFound(){
+    public function testShouldReturnAuthorEntityByNameWhenFound():void
+    {
         $author = new Author();
         $author->setName("Petter");
         $this->repositoryMock->expects(self::once())->method('findByName')->willReturn($author);
 
         $response = $this->useCase->handler('Petter');
+
         $this->assertTrue($response instanceof Author);
         $this->assertEquals('Petter', $response->getName());
     }
 
-    public function testShouldReturnNullByNameWhenNotFound(){
-
+    public function testShouldReturnNullByNameWhenNotFound():void
+    {
         $this->repositoryMock->expects(self::once())->method('findByName')->willReturn(null);
 
         $response = $this->useCase->handler('Petter');

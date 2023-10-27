@@ -25,7 +25,11 @@ class SearchBookTest extends TestCase
         $this->useCase = new SearchBook($this->repositoryMock);
     }
 
-    public function testShouldReturnBookEntityWhenFoundByName(){
+    /**
+     * @return void
+     */
+    public function testShouldReturnBookEntityWhenFoundByName():void
+    {
         $Book = new Book();
         $Book->setName("NewBook");
         $this->repositoryMock->expects(self::once())->method('search')->willReturn($Book);
@@ -35,7 +39,11 @@ class SearchBookTest extends TestCase
         $this->assertEquals('NewBook', $response->getName());
     }
 
-    public function testShouldReturnNullWhenNotFound(){
+    /**
+     * @return void
+     */
+    public function testShouldReturnNullWhenNotFound():void
+    {
         $this->repositoryMock->expects(self::once())->method('search')->willReturn(null);
 
         $response = $this->useCase->handler('NotFoundBook');

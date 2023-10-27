@@ -16,20 +16,22 @@ class BookSearchController extends AbstractController
     {
     }
 
+    /**
+     * @param string $name
+     * @return JsonResponse
+     */
     public function __invoke(string $name): JsonResponse
     {
-
         try {
             $book = $this->searchBook->handler($name);
 
             if (!$book instanceof Book) {
                 return $this->json([
-                    'error' => 'Book '.$name.' not found!',
+                    'error' => 'Book ' . $name . ' not found!',
                 ], 404);
             }
-            return $this->json([
-                'data' => $book,
-            ]);
+
+            return $this->json(['data' => $book ]);
         } catch (Exception $exception) {
             return $this->json([
                 'error' => $exception->getMessage(),

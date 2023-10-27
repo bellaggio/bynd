@@ -10,8 +10,11 @@ use Doctrine\Persistence\ObjectManager;
 
 class AppFixtures extends Fixture
 {
-
-    public function load(ObjectManager $manager)
+    /**
+     * @param ObjectManager $manager
+     * @return void
+     */
+    public function load(ObjectManager $manager):void
     {
         DefaultAuthorsStory::load();
         DefaultPublishersStory::load();
