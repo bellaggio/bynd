@@ -19,6 +19,17 @@ docker exec -it symfony-assessment-apache-php bash
 composer install
 ```
 
+### Backend details (Added)
+* [Symfony](https://symfony.com/releases/6.3) - Framework
+* Docker
+* PHP8.2
+* [psalm](https://psalm.dev/) - Code static verification
+* Solid
+
+#### Backend Architecture (Added) 
+- [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
+- Action as a service
+
 ## Installed Packages
 You have three container running: Apache-PHP, MariaDB and Adminer.
 - [Web-App](http://0.0.0.0)
