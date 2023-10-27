@@ -6,22 +6,20 @@ use App\Infra\Request\Constraint as Assert;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Type;
 
-class BookRequest extends BaseRequest
+class BookRequest
 {
-
     #[NotBlank([])]
     #[Type('string')]
-    protected $name;
-
+    public string $name;
     #[Type('integer')]
     #[NotBlank([])]
-    protected $ISBN;
+    public mixed $ISBN;
 
     #[Type('string')]
     #[NotBlank([])]
-    protected $author;
+    public string $author;
 
     #[Type('string')]
     #[NotBlank([])]
-    protected $publisher;
+    public string $publisher;
 }

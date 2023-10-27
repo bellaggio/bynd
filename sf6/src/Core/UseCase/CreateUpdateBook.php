@@ -19,13 +19,11 @@ class CreateUpdateBook
      * @param Publisher $hasPublisher
      * @return Book
      */
-    public function handler(array $data, Author $hasAuthor, Publisher $hasPublisher)
+    public function handler(array $data, Author $hasAuthor, Publisher $hasPublisher): Book
     {
-
         if (isset($data['id'])) {
-            $this->bookRepository->update($data['id'], $data, $hasAuthor, $hasPublisher);
+            return $this->bookRepository->update($data['id'], $data, $hasAuthor, $hasPublisher);
         }
-
         return $this->bookRepository->create($data, $hasAuthor, $hasPublisher);
     }
 }

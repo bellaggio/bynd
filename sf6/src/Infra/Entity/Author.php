@@ -25,6 +25,9 @@ class Author
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: false)]
     private DateTime $updated_at;
 
+    /**
+     * @return int
+     */
     public function getId(): int
     {
         return $this->id;

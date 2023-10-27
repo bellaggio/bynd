@@ -48,6 +48,7 @@ class BookRepository extends ServiceEntityRepository implements BookRepositoryIn
         $book->setPublisher($hasPublisher);
         $book->setISBN($data['ISBN']);
         $book->setUpdatedAt(new DateTime('now'));
+        $book->setDescription($data['name'] ?? '');
         $entityManager->persist($book);
         $entityManager->flush();
 

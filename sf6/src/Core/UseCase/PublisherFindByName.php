@@ -13,7 +13,7 @@ class PublisherFindByName
 
     /**
      * @param string $name
-     * @return int
+     * @return Publisher|null
      */
     public function handler(string $name): ?Publisher
     {
