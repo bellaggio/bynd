@@ -13,7 +13,7 @@ class AuthorFindByName
 
     /**
      * @param string $name
-     * @return bool
+     * @return Author|null
      */
     public function handler(string $name): ?Author
     {

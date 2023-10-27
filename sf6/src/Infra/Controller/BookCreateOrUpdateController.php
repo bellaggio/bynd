@@ -11,7 +11,10 @@ use App\Infra\Request\BookRequest;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 #[Route('/book', name: 'app_book_create', methods: ['POST'])]
 class BookCreateOrUpdateController extends AbstractController
@@ -25,16 +28,19 @@ class BookCreateOrUpdateController extends AbstractController
     {
     }
 
-    public function __invoke(BookRequest $request): JsonResponse
+    public function __invoke(Request $request, SerializerInterface  $serializer, ValidatorInterface $validator): JsonResponse
     {
-        $errors = $request->validate();
 
-        if ($errors) {
+        $dto = $serializer->deserialize($request->getContent(), BookRequest::class, 'json');
+
+        $errors = $validator->validate($dto);
+
+        if ($errors->count() > 0) {
             return $this->json([
                 'errors' => $errors,
             ], 404);
         }
-        $data = $request->getRequest()->toArray();
+        $data = json_decode($request->getContent(),true);
 
         $hasAuthor = $this->authorFindByName->handler($data['author']);
 
@@ -57,7 +63,7 @@ class BookCreateOrUpdateController extends AbstractController
             $this->createUpdateBook->handler($data, $hasAuthor, $hasPublisher);
 
             return $this->json([
-                'message' => 'Book' . $data['name'] . ' was created/updated!',
+                'message' => 'The title ' . $data['name'] . ' was created/updated!',
             ]);
         } catch (Exception $exception) {
             return $this->json([
